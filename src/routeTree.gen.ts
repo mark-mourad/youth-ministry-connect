@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as ServantRouteImport } from './routes/servant'
 import { Route as ServantRegisterSecret89xqRouteImport } from './routes/servant-register-secret-89xq'
 import { Route as SignupRouteImport } from './routes/signup'
 import { Route as StudentRouteImport } from './routes/student'
@@ -23,6 +24,11 @@ const IndexRoute = IndexRouteImport.update({
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServantRoute = ServantRouteImport.update({
+  id: '/servant',
+  path: '/servant',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServantRegisterSecret89xqRoute =
@@ -45,6 +51,7 @@ const StudentRoute = StudentRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/servant': typeof ServantRoute
   '/servant-register-secret-89xq': typeof ServantRegisterSecret89xqRoute
   '/signup': typeof SignupRoute
   '/student': typeof StudentRoute
@@ -52,6 +59,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/servant': typeof ServantRoute
   '/servant-register-secret-89xq': typeof ServantRegisterSecret89xqRoute
   '/signup': typeof SignupRoute
   '/student': typeof StudentRoute
@@ -60,6 +68,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/servant': typeof ServantRoute
   '/servant-register-secret-89xq': typeof ServantRegisterSecret89xqRoute
   '/signup': typeof SignupRoute
   '/student': typeof StudentRoute
@@ -67,13 +76,25 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/login' | '/servant-register-secret-89xq' | '/signup' | '/student'
+    | '/'
+    | '/login'
+    | '/servant'
+    | '/servant-register-secret-89xq'
+    | '/signup'
+    | '/student'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/servant-register-secret-89xq' | '/signup' | '/student'
+  to:
+    | '/'
+    | '/login'
+    | '/servant'
+    | '/servant-register-secret-89xq'
+    | '/signup'
+    | '/student'
   id:
     | '__root__'
     | '/'
     | '/login'
+    | '/servant'
     | '/servant-register-secret-89xq'
     | '/signup'
     | '/student'
@@ -82,6 +103,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LoginRoute: typeof LoginRoute
+  ServantRoute: typeof ServantRoute
   ServantRegisterSecret89xqRoute: typeof ServantRegisterSecret89xqRoute
   SignupRoute: typeof SignupRoute
   StudentRoute: typeof StudentRoute
@@ -101,6 +123,13 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/servant': {
+      id: '/servant'
+      path: '/servant'
+      fullPath: '/servant'
+      preLoaderRoute: typeof ServantRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/servant-register-secret-89xq': {
@@ -130,6 +159,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LoginRoute: LoginRoute,
+  ServantRoute: ServantRoute,
   ServantRegisterSecret89xqRoute: ServantRegisterSecret89xqRoute,
   SignupRoute: SignupRoute,
   StudentRoute: StudentRoute,
