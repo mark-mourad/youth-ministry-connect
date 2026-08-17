@@ -10,33 +10,81 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as ServantRegisterSecret89xqRouteImport } from './routes/servant-register-secret-89xq'
+import { Route as SignupRouteImport } from './routes/signup'
+import { Route as StudentRouteImport } from './routes/student'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServantRegisterSecret89xqRoute =
+  ServantRegisterSecret89xqRouteImport.update({
+    id: '/servant-register-secret-89xq',
+    path: '/servant-register-secret-89xq',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StudentRoute = StudentRouteImport.update({
+  id: '/student',
+  path: '/student',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/servant-register-secret-89xq': typeof ServantRegisterSecret89xqRoute
+  '/signup': typeof SignupRoute
+  '/student': typeof StudentRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/servant-register-secret-89xq': typeof ServantRegisterSecret89xqRoute
+  '/signup': typeof SignupRoute
+  '/student': typeof StudentRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/servant-register-secret-89xq': typeof ServantRegisterSecret89xqRoute
+  '/signup': typeof SignupRoute
+  '/student': typeof StudentRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    '/' | '/login' | '/servant-register-secret-89xq' | '/signup' | '/student'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/login' | '/servant-register-secret-89xq' | '/signup' | '/student'
+  id:
+    | '__root__'
+    | '/'
+    | '/login'
+    | '/servant-register-secret-89xq'
+    | '/signup'
+    | '/student'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  LoginRoute: typeof LoginRoute
+  ServantRegisterSecret89xqRoute: typeof ServantRegisterSecret89xqRoute
+  SignupRoute: typeof SignupRoute
+  StudentRoute: typeof StudentRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +96,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/servant-register-secret-89xq': {
+      id: '/servant-register-secret-89xq'
+      path: '/servant-register-secret-89xq'
+      fullPath: '/servant-register-secret-89xq'
+      preLoaderRoute: typeof ServantRegisterSecret89xqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/student': {
+      id: '/student'
+      path: '/student'
+      fullPath: '/student'
+      preLoaderRoute: typeof StudentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  LoginRoute: LoginRoute,
+  ServantRegisterSecret89xqRoute: ServantRegisterSecret89xqRoute,
+  SignupRoute: SignupRoute,
+  StudentRoute: StudentRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
