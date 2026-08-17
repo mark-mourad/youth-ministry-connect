@@ -60,9 +60,18 @@ function SignupPage() {
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (form.password.length < 6) return toast.error("كلمة المرور 6 أحرف على الأقل");
-    if (form.password !== form.confirm) return toast.error("كلمة المرور غير متطابقة");
-    if (!form.grade_level) return toast.error("اختر المرحلة الدراسية");
+    if (form.password.length < 6) {
+      toast.error("كلمة المرور 6 أحرف على الأقل");
+      return;
+    }
+    if (form.password !== form.confirm) {
+      toast.error("كلمة المرور غير متطابقة");
+      return;
+    }
+    if (!form.grade_level) {
+      toast.error("اختر المرحلة الدراسية");
+      return;
+    }
 
     setBusy(true);
     const { data, error } = await supabase.auth.signUp({

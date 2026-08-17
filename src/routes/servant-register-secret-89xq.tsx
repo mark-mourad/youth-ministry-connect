@@ -47,7 +47,10 @@ function ServantRegister() {
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.grade_level) return toast.error("اختر المرحلة التي تخدمها");
+    if (!form.grade_level) {
+      toast.error("اختر المرحلة التي تخدمها");
+      return;
+    }
     setBusy(true);
     const result = await register({
       data: {
